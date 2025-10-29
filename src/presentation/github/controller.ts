@@ -9,7 +9,7 @@ export class GithubController {
 
   webhookHandler = (req: Request, res: Response) => {
     const githubEvent = req.header('x-github-event') ?? 'unknown';
-    const payload = req.body;
+    const payload = req.body ?? {};
     let message: string;
 
     switch(githubEvent) {
@@ -17,11 +17,15 @@ export class GithubController {
         message = this.githubService.onStar(payload);
         break;
 
+      case 'issues':
+        message = this.githubService.onIssue(payload);
+        break;
+
       default:
         message = `Unknown event ${ githubEvent }`;
     }
 
-    console.log(message);
+    console.log({message});
 
     res.status(201).send('Accepted');
   };
