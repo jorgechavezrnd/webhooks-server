@@ -9,6 +9,11 @@ export class DiscordService {
   async notify(message: string) {
     const body = {
       content: message,
+      // embeds: [
+      //   {
+      //     image: { url: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGR4cXRrNnAwdDZ4aHR6eGlqbTZrNHlhN2p4dTB3bDMzdTJzbmQ0MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif' }
+      //   }
+      // ],
     };
 
     const resp = await fetch(this.discordWebhookUrl, {
