@@ -5,9 +5,12 @@ export class GithubController {
   constructor() {}
 
   webhookHandler = (req: Request, res: Response) => {
-    console.log('Endpoint Llamado');
+    const githubEvent = req.header('x-github-event') ?? 'unknown';
+    const payload = req.body;
 
-    res.json('Hecho');
+    console.log({githubEvent});
+
+    res.status(201).send('Accepted');
   };
 
 }
